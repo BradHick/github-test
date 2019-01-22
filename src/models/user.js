@@ -69,16 +69,14 @@ const user = {
     },
 
     effcts: (dispatch) => ({
-      fetchUser(name){
+      fetchUser(username){
         dispatch.contact.fetchUserPending();
-        return client.get(`${url}/${name}`)
+        return client.get(`${url}/${username}`)
           .then(res => {
             dispatch.contact.fetchUserFulfiled(res.data);
           });
       },
     })
-
-
 
 
   }
