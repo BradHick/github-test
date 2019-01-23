@@ -14,13 +14,21 @@ const repo = {
   state,
   reducers: {
     fetchReposFulfiled: (state, payload) => {
-      return state.merge({ repos: payload.data, loading: false });
+      return state.merge({ 
+        repos: payload.data,
+        loading: false
+      });
     },
     fetchReposPending: (state) => {
-      return state.merge({ loading: true });
+      return state.merge({ 
+        loading: true
+      });
     },
     fetchReposRejected: (state, payload) => {
-      return state.merge({ errors: payload.errors, loading: false });
+      return state.merge({
+        errors: payload.errors,
+        loading: false
+      });
     },
     resetRepos: (state) => {
       return state.merge({ 

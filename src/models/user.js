@@ -49,15 +49,23 @@ const user = {
 
   reducers: {
     fetchUserFulfiled: ( state, payload ) => {
-      return state.merge({ user: payload, loading: false });
+      return state.merge({
+        user: payload,
+        loading: false
+      });
     },
 
     fetchUserPending: (state) => {
-      return state.merge({ loading: true });
+      return state.merge({
+        loading: true
+      });
     },
 
     fetchUserRejected: (state, payload) => {
-      return state.merge({ errors: payload.errors, loading: false });
+      return state.merge({
+        errors: payload.errors,
+        loading: false
+      });
     },
 
     resetUser: (state) => {
