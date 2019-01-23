@@ -30,6 +30,17 @@ const repo = {
       });
     }
   },
+
+  effects: (dispatch) => ({
+    fetchRepos(username){
+      dispatch.repo.fetchReposPending();
+      return client.get(`${url}/${username}/repos`)
+        .then(res => {
+          dispatch.repo.fetchReposFulfiled(res.data);
+        });
+
+    }
+  })
 };
 
 export default repo;
