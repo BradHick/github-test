@@ -32,9 +32,16 @@ const commit = {
       });
     }
   },
-  effects: (dispatch) =>{
-    
-  }
+  effects: (dispatch) => ({
+    fetchCommits(username, repoName){
+      dispatch.repo.fetchCommitsPending();
+      return client.get(`${url}/${username}/${repoName}/commits`)
+        .then(res => {
+          dispatch.repo.fetchCommitsFulfiled(res.data);
+        });
+    }
+  })
+
 };
 
 export default commit;
