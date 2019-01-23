@@ -73,7 +73,7 @@ const user = {
         dispatch.user.fetchUserPending();
         return client.get(`${url}/${username}`)
           .then(res => {
-            dispatch.contact.fetchUserFulfiled(res.data);
+            dispatch.user.fetchUserFulfiled(res.data);
           });
       },
     })
