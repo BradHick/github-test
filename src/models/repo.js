@@ -2,7 +2,7 @@ import { client } from '../client/client';
 import Immutable from 'seamless-immutable';
 
 
-const url = '/repos';
+const url = '/users';
 
 const state = new Immutable({
   repos: [],
