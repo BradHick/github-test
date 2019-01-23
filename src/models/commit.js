@@ -14,7 +14,23 @@ const state = new Immutable({
 const commit = {
   state,
   reducers:{
-
+    fetchCommitsFulfiled: (state, payload) => {
+      return state.merge({
+        commits: payload.data,
+        loading: false
+      });
+    },
+    fetchCommitsPending: (state) => {
+      return state.merge({
+        loading: true
+      });
+    },
+    fetchCommitsRejected: (state, payload) => {
+      return state.merge({
+        errors: payload.errors,
+        loading: false
+      });
+    }
   },
   effects: (dispatch) =>{
     
