@@ -70,7 +70,7 @@ const user = {
 
     effcts: (dispatch) => ({
       fetchUser(username){
-        dispatch.contact.fetchUserPending();
+        dispatch.user.fetchUserPending();
         return client.get(`${url}/${username}`)
           .then(res => {
             dispatch.contact.fetchUserFulfiled(res.data);
