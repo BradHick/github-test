@@ -34,10 +34,13 @@ const commit = {
   },
   effects: (dispatch) => ({
     fetchCommits(username, repoName){
-      dispatch.repo.fetchCommitsPending();
+      dispatch.commit.fetchCommitsPending();
       return client.get(`${url}/${username}/${repoName}/commits`)
         .then(res => {
-          dispatch.repo.fetchCommitsFulfiled(res.data);
+          dispatch.commit.fetchCommitsFulfiled(res.data);
+        })
+        .catch(err =>{
+          dispatch.commit.fetchCommitsRejected(err);
         });
     }
   })

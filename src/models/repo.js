@@ -45,6 +45,9 @@ const repo = {
       return client.get(`${url}/${username}/repos`)
         .then(res => {
           dispatch.repo.fetchReposFulfiled(res.data);
+        })
+        .catch(err =>{
+          dispatch.repo.fetchReposRejected(err);
         });
 
     }

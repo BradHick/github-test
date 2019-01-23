@@ -82,6 +82,9 @@ const user = {
         return client.get(`${url}/${username}`)
           .then(res => {
             dispatch.user.fetchUserFulfiled(res.data);
+          })
+          .catch(err =>{
+            dispatch.user.fetchUserRejected(err);
           });
       },
     })
