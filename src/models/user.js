@@ -41,7 +41,7 @@ const state = new Immutable( {
   user: {},
   loading: false,
   errors: {}
-} );
+});
 
 const user = {
 
@@ -75,24 +75,21 @@ const user = {
         errors: {}
       });
     },
+  },
 
-    effcts: (dispatch) => ({
-      fetchUser(username){
-        dispatch.user.fetchUserPending();
-        return client.get(`${url}/${username}`)
-          .then(res => {
-            dispatch.user.fetchUserFulfiled(res.data);
-          })
-          .catch(err =>{
-            dispatch.user.fetchUserRejected(err);
-          });
-      },
-    })
-
-
-  }
-
-
+  effects: (dispatch) => ({
+    fetchUser(username){
+      dispatch.user.fetchUserPending();
+      return client.get(`${url}/${username}`)
+        .then(res => {
+          dispatch.user.fetchUserFulfiled(res.data);
+        })
+        .catch(err =>{
+          dispatch.user.fetchUserRejected(err);
+        });
+    },
+  })
+  
 };
 
 
