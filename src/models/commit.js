@@ -1,6 +1,5 @@
 import { client } from '../client/client';
 import Immutable from 'seamless-immutable';
-import { dispatch } from 'rxjs/internal/observable/pairs';
 
 
 const url = '/repos';
@@ -16,7 +15,7 @@ const commit = {
   reducers:{
     fetchCommitsFulfiled: (state, payload) => {
       return state.merge({
-        commits: payload.data,
+        commits: payload.data || payload,
         loading: false
       });
     },
@@ -27,7 +26,7 @@ const commit = {
     },
     fetchCommitsRejected: (state, payload) => {
       return state.merge({
-        errors: payload.errors,
+        errors: payload.errors || payload,
         loading: false
       });
     }

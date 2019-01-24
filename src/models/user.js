@@ -50,7 +50,7 @@ const user = {
   reducers: {
     fetchUserFulfiled: ( state, payload ) => {
       return state.merge({
-        user: payload,
+        user: payload.data || payload,
         loading: false
       });
     },
@@ -63,7 +63,7 @@ const user = {
 
     fetchUserRejected: (state, payload) => {
       return state.merge({
-        errors: payload.errors,
+        errors: payload.errors || payload,
         loading: false
       });
     },

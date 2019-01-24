@@ -15,7 +15,7 @@ const repo = {
   reducers: {
     fetchReposFulfiled: (state, payload) => {
       return state.merge({ 
-        repos: payload.data,
+        repos: payload.data || payload,
         loading: false
       });
     },
@@ -26,7 +26,7 @@ const repo = {
     },
     fetchReposRejected: (state, payload) => {
       return state.merge({
-        errors: payload.errors,
+        errors: payload.errors || payload,
         loading: false
       });
     },
