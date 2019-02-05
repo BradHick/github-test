@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 
 const mapStateToProps = ({ user }) => {
-  console.log(user);
   return {
     user: user.user,
     errors: user.errors,
