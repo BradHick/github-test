@@ -9,6 +9,9 @@ import Title from './Title';
 import NotFound from './NotFound';
 import UsersList from './UsersList';
 import If from './If';
+import Repo from './Repo';
+import BackPage from './BackPage';
+import Info from './Info';
 
 export {
   Header,
@@ -19,7 +22,10 @@ export {
   If,
   Loading,
   Card,
+  Repo,
+  Info,
   Title,
+  BackPage,
   NotFound,
   UsersList
 };
