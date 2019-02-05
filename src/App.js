@@ -1,12 +1,15 @@
 import React, { Component, Fragment } from 'react';
-import { Header, Footer } from './components';
+import { Header, Footer, Container } from './components';
+import Routes from './Routes';
 
 class App extends Component {
   render() {
     return (
       <Fragment>
         <Header />
-          Content
+          <Container>
+            <Routes />
+          </Container>
         <Footer />
       </Fragment>
     );
