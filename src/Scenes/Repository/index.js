@@ -25,11 +25,8 @@ class Repository extends Component {
   getReposList = () => {
     const { fetchRepos, match: { params } } = this.props;
 
-    const query = {};
-
     if (params.username) {
-      query.username = params.username;
-      fetchRepos(query);
+      fetchRepos(params.username);
     }
   };
 
@@ -77,6 +74,10 @@ class Repository extends Component {
 
   render() {
     const { repos, user, fetchCommits, loading } = this.props;
+    console.log('====================================');
+    console.log('repos s--->', repos);
+    console.log('this.props s--->', this.props);
+    console.log('====================================');
     return (
       <Fragment>
         <If condition={repos && repos.length}>
