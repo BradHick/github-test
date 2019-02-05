@@ -3,22 +3,22 @@ import styled from 'styled-components';
 
 
 const FooterWrapper = styled.footer`
-  height: 80px,
-  backgroundColor: #313541,
-  display: flex,
-  alignItems: center,
-  paddingLeft: 20px,
-  fontFamily: Roboto,Helvetica,Arial,sans-serif
+  height: 80px;
+  background-color: #313541;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  font-family: Roboto,Helvetica,Arial,sans-serif;
 `;
 
 const Text = styled.span`
-  margin: 0 auto,
-  color: #fff,
-  fontSize: 13px
+  margin: 0 auto;
+  color: #fff;
+  font-size: 13px;
 `;
 
 const Icon = styled.i`
-  color: #ff6666
+  color: #ff6666;
 `;
 
 const Footer = props => (
