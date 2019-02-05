@@ -51,6 +51,7 @@ const user = {
     fetchUserFulfiled: ( state, payload ) => {
       return state.merge({
         user: payload.data || payload,
+        errors: {},
         loading: false
       });
     },
@@ -63,6 +64,7 @@ const user = {
 
     fetchUserRejected: (state, payload) => {
       return state.merge({
+        user: {},
         errors: payload.errors || payload,
         loading: false
       });
