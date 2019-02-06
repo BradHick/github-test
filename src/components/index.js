@@ -5,6 +5,7 @@ import Avatar from './Avatar';
 import Input from './Input';
 import Loading from './Loading';
 import Card from './Card';
+import Button from './Button';
 import Title from './Title';
 import NotFound from './NotFound';
 import UsersList from './UsersList';
@@ -12,6 +13,7 @@ import If from './If';
 import Repo from './Repo';
 import BackPage from './BackPage';
 import Info from './Info';
+import Commit from './Commit';
 
 export {
   Header,
@@ -19,7 +21,9 @@ export {
   Container,
   Avatar,
   Input,
+  Button,
   If,
+  Commit,
   Loading,
   Card,
   Repo,
