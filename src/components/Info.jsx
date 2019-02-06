@@ -16,13 +16,13 @@ const Description = styled.span`
   margin-top: 8px;
   text-transform: uppercase;
   font-weight: bold;
-  color: #afb2b4;
+  color: #d7d8d9;
 `;
 
 const Title = styled.h1`
   font-family: Montserrat;
   font-size: 50px;
-  color: #d7d8d9;
+  color: #313541;
 `;
 
 const Info = ({ description, value }) => (

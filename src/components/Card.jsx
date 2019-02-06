@@ -9,7 +9,7 @@ const Card = styled.div`
   padding: 20px;
   margin-top: 10px;
   text-decoration: none;
-  display: flex;
+  display: ${p => (p.info ? 'flex' : 'block')};
   @media (max-width: 800px) { width: 80%; }
 `;
 

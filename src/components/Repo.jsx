@@ -5,7 +5,7 @@ const Badge = styled.div`
   min-width: 70px;
   height: 20px;
   border-radius: 13px;
-  background-color: #f2f2f2;
+  background-color: ${p => p.color || '#f2f2f2'};
   position: absolute;
   right: 0;
   color: #fff;
@@ -55,7 +55,7 @@ const Description = styled.p`
 
 const Repo = ({ name, description, commitStatus }) => (
   <RepositoryWrapper>
-    <Badge>
+    <Badge color={commitStatus.color}>
       <BadgeDescription>
         {commitStatus.message}
       </BadgeDescription> 
