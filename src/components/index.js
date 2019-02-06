@@ -14,6 +14,7 @@ import Repo from './Repo';
 import BackPage from './BackPage';
 import Info from './Info';
 import Commit from './Commit';
+import Select from './Select';
 
 export {
   Header,
@@ -26,6 +27,7 @@ export {
   Commit,
   Loading,
   Card,
+  Select,
   Repo,
   Info,
   Title,
