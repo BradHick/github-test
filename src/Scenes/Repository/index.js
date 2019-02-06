@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
-// import differenceInDays from 'date-fns/difference_in_days';
+import differenceInDays from 'date-fns/difference_in_days';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
-import moment from 'moment';
 
 // Container
 import container from './container';
@@ -18,40 +17,48 @@ import {
   Repo
 } from '../../components';
 
-// import layout from '../../config/layout';
+const getTimeRange = lastCommit => {
+
+  const dateNow = new Date();
+  const lastCommitDate = differenceInDays(dateNow, lastCommit);
+  let result = {};
+
+  if (lastCommitDate <= 30) {
+    result.color = '#28c38d';
+    result.message = 'Updates: Earlier 30 days';
+  }
+  if (lastCommitDate > 30 && lastCommitDate <= 60) {
+    result.color = '#ffbc34';
+    result.message = 'Updates: Between 30 and 60 days';
+  }
+
+  if (lastCommitDate > 60 && lastCommitDate <= 90) {
+    result.color = '#f2f2f2';
+    result.message = 'Updates: Between 60 and 90 days';
+  }
+
+  if (lastCommitDate > 90) {
+    result.color = '#ff6666';
+    result.message = 'Updates: After 90 days without update';
+  }
+  return result;
+};
+
+const getReposList = (params, fetchRepos, fetchUser) => {
+  if (params.username) {
+    fetchRepos(params.username);
+    fetchUser(params.username);
+  }
+};
+
+const sortRepos = (items) => {
+  let arr = [...items];
+  return arr.sort((a,b) => (a.updated_at > b.updated_at) ? -1 : ((b.updated_at > a.updated_at) ? 1 : 0));
+};
 
 class Repository extends Component {
 
-  getReposList = () => {
-    const { fetchRepos, match: { params } } = this.props;
-
-    if (params.username) {
-      fetchRepos(params.username);
-    }
-  };
-
-  // differenceDates = lastCommit => {
-  //   // const { warning, danger, success } = layout.colors;
-
-  //   const dateNow = new Date();
-  //   const lastCommitDate = differenceInDays(dateNow, lastCommit);
-  //   let result = {};
-
-  //   if (lastCommitDate <= 30) {
-  //     result.color = 'green';
-  //     result.message = 'Latest Updates';
-  //   }
-  //   if (lastCommitDate > 30 && lastCommitDate <= 60) {
-  //     result.color = 'orange';
-  //     result.message = 'between 30 and 60 days';
-  //   }
-
-  //   if (lastCommitDate > 60) {
-  //     result.color = 'red';
-  //     result.message = 'No recent updates';
-  //   }
-  //   return result;
-  // };
+  
 
   // scrollInfiniy = () => {
   //   const { isRequest } = this.props;
@@ -68,16 +75,13 @@ class Repository extends Component {
   // };
 
   componentDidMount() {
-    this.getReposList();
+    const { fetchRepos, fetchUser, match: { params } } = this.props;
+    getReposList(params, fetchRepos, fetchUser);
     // this.scrollInfiniy();
   }
 
   render() {
     const { repos, user, fetchCommits, loading } = this.props;
-    console.log('====================================');
-    console.log('repos s--->', repos);
-    console.log('this.props s--->', this.props);
-    console.log('====================================');
     return (
       <Fragment>
         <If condition={repos && repos.length}>
@@ -88,26 +92,29 @@ class Repository extends Component {
               description={'following'}
             />
             <Info
-              value={user ? user.public_repos : null}
-              description={'repos publics'}
-            />
-            <Info
               value={user ? user.followers : null}
               description={'followers'}
             />
+            <Info
+              value={user ? user.public_repos : null}
+              description={'public repos'}
+            />
+            <Info
+              value={user ? user.public_gists : null}
+              description={'public gists'}
+            />
           </Card>
-          {repos.map(({ name, updated_at, description }, i) => {
+          {sortRepos(repos).map(({ name, updated_at, description }, i) => {
             return (
-              <Card key={i} onClick={() => fetchCommits(name)}>
+              <Card key={i} onClick={() => fetchCommits(user.login,name)}>
                 <Link
-                  to={`/list-commits/${user.login}/${name}`}
+                  to={`/commits-list/${user.login}/${name}`}
                   style={{ textDecoration: 'none' }}
                 >
                   <Repo
                     name={name}
                     description={description}
-                    commitStatus={moment(updated_at)}
-                    // commitStatus={this.differenceDates(updated_at)}
+                    commitStatus={getTimeRange(updated_at)}
                   />
                 </Link>
               </Card>
@@ -121,7 +128,7 @@ class Repository extends Component {
               color='#313541'
               height='100'	
               width='100'
-            />   
+            />
           </If>
         </Loading>
         <BackPage to={'/'} />
