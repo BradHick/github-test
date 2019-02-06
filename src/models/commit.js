@@ -24,6 +24,13 @@ const commit = {
         loading: true
       });
     },
+    resetCommits: (state) => {
+      return state.merge({
+        commits: [],
+        errors: {},
+        loading: false
+      });
+    },
     fetchCommitsRejected: (state, payload) => {
       return state.merge({
         errors: payload.errors || payload,
@@ -33,6 +40,7 @@ const commit = {
   },
   effects: (dispatch) => ({
     fetchCommits(params){
+      dispatch.commit.resetCommits();
       dispatch.commit.fetchCommitsPending();
       return client.get(`${url}/${params.username}/${params.repos}/commits`)
         .then(res => {
