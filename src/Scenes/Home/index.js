@@ -12,32 +12,35 @@ import {
   If,
   UsersList,
   Title,
+  Button,
   Loading,
   NotFound
 } from '../../components';
 
-const checkEmptyInput = (e, fetchUser) => {
-  if (e.target.value !== '' ){
-    return fetchUser(e.target.value);
+const checkEmptyInput = (text, fetchUser) => {
+  if (text !== '' ){
+    return fetchUser(text);
   }
 }
 
 class Home extends Component {
+  state = {
+    text: ''
+  }
   render() {
-    const { user, errors, loading } = this.props;
+    const { user, errors, loading, fetchUser, fetchRepos } = this.props;
     const { name, avatar_url, bio, location, id, login } = user;
-    const { fetchUser, fetchRepos } = this.props;
-    console.log('====================================');
-    console.log('this.props ->', this.props);
-    console.log('====================================');
     return (
       <Fragment>
-        <Title>search by username</Title>
+        <Title>Search by username</Title>
         <Card>
           <Input
-            placeholder='search for a username'
-            onBlur={e => checkEmptyInput(e, fetchUser)}
+            placeholder='Username'
+            onChange={e => this.setState({text: e.target.value})}
           />
+          <Button onClick={() => checkEmptyInput(this.state.text, fetchUser)}>
+            {'Search'}
+          </Button>
         </Card>
         <If condition={ user.id && !errors.response }>
           <Card onClick={() => fetchRepos()}>
