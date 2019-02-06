@@ -26,7 +26,7 @@ const Icon = styled.i`
 const Input = ({ ...props }) => (
   <InputContainer>
     <InputField {...props} />
-    <Icon className='fas fa-search' />
+    <Icon className='fa fa-search' />
   </InputContainer>
 );
 
