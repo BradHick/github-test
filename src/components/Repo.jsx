@@ -53,7 +53,7 @@ const Description = styled.p`
   line-height: 16px;
 `;
 
-const Repo = ({ name, description, commitStatus }) => (
+const Repo = ({ name, description, commitStatus, stars, watchers }) => (
   <RepositoryWrapper>
     <Badge color={commitStatus.color}>
       <BadgeDescription>
@@ -63,7 +63,10 @@ const Repo = ({ name, description, commitStatus }) => (
     <RepositoryCollum>
       <Title> {name} </Title>
       <Description>
-        {description ? description : 'this component has no description'}
+        {description ? description : 'No description'}
+      </Description>
+      <Description>
+        &#9733;{ `${ stars ? stars : 0 }`}  &#128065;{`${ watchers ? watchers : 0 }`}
       </Description>
     </RepositoryCollum>
   </RepositoryWrapper>
