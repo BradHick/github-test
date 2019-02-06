@@ -32,9 +32,9 @@ const commit = {
     }
   },
   effects: (dispatch) => ({
-    fetchCommits(username, repoName){
+    fetchCommits(params){
       dispatch.commit.fetchCommitsPending();
-      return client.get(`${url}/${username}/${repoName}/commits`)
+      return client.get(`${url}/${params.username}/${params.repos}/commits`)
         .then(res => {
           dispatch.commit.fetchCommitsFulfiled(res.data);
         })
