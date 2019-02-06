@@ -5,20 +5,28 @@ import createHistory from 'history/createBrowserHistory';
 // Components
 import Home from './Scenes/Home';
 import Repository from './Scenes/Repository';
-// import CommitsList from '../Scenes/CommitList';
+import CommitList from './Scenes/Commit';
 
 export const history = createHistory();
 
 const Routes = () => (
   <Router history={history}>
     <Switch>
-      <Route path='/' exact={true} component={Home} />
-      {/* <Route
-        path='/list-commits/:username/:repos'
+      <Route
+        path='/'
         exact={true}
-        component={CommitsList}
-      />*/}
-      <Route path='/:username' exact={true} component={Repository} /> 
+        component={Home}
+      />
+      <Route
+        path='/commits-list/:username/:repos'
+        exact={true}
+        component={CommitList}
+      />
+      <Route
+        path='/:username'
+        exact={true}
+        component={Repository}
+      />
     </Switch>
   </Router>
 );
