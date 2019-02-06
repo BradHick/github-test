@@ -2,6 +2,7 @@ import React, { Component, Fragment } from 'react';
 import differenceInDays from 'date-fns/difference_in_days';
 import { Link } from 'react-router-dom';
 import Loader from 'react-loader-spinner';
+import { Formik } from 'formik';
 
 // Container
 import container from './container';
@@ -13,6 +14,8 @@ import {
   Info,
   Avatar,
   Loading,
+  Select,
+  Button,
   BackPage,
   Repo
 } from '../../components';
@@ -51,15 +54,23 @@ const getReposList = (params, fetchRepos, fetchUser) => {
   }
 };
 
-const sortRepos = (items) => {
+const sortRepos = (items, field, order) => {
   let arr = [...items];
-  return arr.sort((a,b) => (a.updated_at > b.updated_at) ? -1 : ((b.updated_at > a.updated_at) ? 1 : 0));
+
+  if (order === 'desc'){
+    return arr.sort((a,b) => (a[field] > b[field]) ? -1 : ((b[field] > a[field]) ? 1 : 0));
+  }
+
+  return arr.sort((a,b) => (a[[field]] > b[[field]]) ? 1 : ((b[[field]] > a[[field]]) ? -1 : 0));
+
 };
 
 class Repository extends Component {
 
+  state = {
+    sortedRepos: [],
+  };
   
-
   // scrollInfiniy = () => {
   //   const { isRequest } = this.props;
   //   if (!isRequest) {
@@ -104,7 +115,39 @@ class Repository extends Component {
               description={'public gists'}
             />
           </Card>
-          {sortRepos(repos).map(({ name, updated_at, description }, i) => {
+          
+          <Card>
+            <Formik 
+              initialValues={{ field:'stargazers_count', order: 'desc'}}
+              onSubmit={values => {
+                this.setState({ sortedRepos: sortRepos(repos, values.field, values.order) })
+              }}
+
+              render={({handleSubmit, handleChange}) => (
+                <form onSubmit={handleSubmit}>
+                  <h2><center>Select filter</center></h2>
+                  <Select name='field' onChange={handleChange}>
+                    <option value='stargazers_count'>Stars</option>
+                    <option value='watchers_count'>Watchers</option>
+                    <option value='updated_at'>Updated at</option>
+                  </Select>
+                  <Select name='order' onChange={handleChange}>
+                    <option value='desc'>Desc</option>
+                    <option value='asc'>Asc</option>
+                  </Select>
+                  <Button type='submit'>
+                    {'Search'}
+                  </Button>
+
+                </form>
+              )}
+            />
+            
+          </Card>
+          <BackPage to={'/'} />
+          { 
+            this.state.sortedRepos.length > 0 ?
+            this.state.sortedRepos.map(({ name, updated_at, description, watchers_count, stargazers_count }, i) => {
             return (
               <Card key={i} onClick={() => fetchCommits(user.login,name)}>
                 <Link
@@ -115,11 +158,32 @@ class Repository extends Component {
                     name={name}
                     description={description}
                     commitStatus={getTimeRange(updated_at)}
+                    stars={stargazers_count}
+                    watchers={watchers_count}
                   />
                 </Link>
               </Card>
             );
-          })}
+            }) :
+            repos.map(({ name, updated_at, description, watchers_count, stargazers_count }, i) => {
+              return (
+                <Card key={i} onClick={() => fetchCommits(user.login,name)}>
+                  <Link
+                    to={`/commits-list/${user.login}/${name}`}
+                    style={{ textDecoration: 'none' }}
+                  >
+                    <Repo
+                      name={name}
+                      description={description}
+                      commitStatus={getTimeRange(updated_at)}
+                      stars={stargazers_count}
+                      watchers={watchers_count}
+                    />
+                  </Link>
+                </Card>
+              );
+              })
+          }
         </If>
         <Loading>
           <If condition={loading}>
@@ -131,7 +195,6 @@ class Repository extends Component {
             />
           </If>
         </Loading>
-        <BackPage to={'/'} />
       </Fragment>
     );
   }
