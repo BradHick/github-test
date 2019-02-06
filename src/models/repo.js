@@ -41,6 +41,7 @@ const repo = {
 
   effects: (dispatch) => ({
     fetchRepos(username){
+      dispatch.repo.resetRepos();
       dispatch.repo.fetchReposPending();
       return client.get(`${url}/${username}/repos`)
         .then(res => {
