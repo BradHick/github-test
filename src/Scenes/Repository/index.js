@@ -141,7 +141,7 @@ class Repository extends Component {
                     <option value='asc'>Asc</option>
                   </Select>
                   <Button type='submit'>
-                    {'Search'}
+                    {'Sort'}
                   </Button>
 
                 </form>
