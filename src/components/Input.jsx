@@ -8,7 +8,8 @@ const InputContainer = styled.div`
 
 const InputField = styled.input`
   width: 100%;
-  height: 33px;
+  height: 36px;
+  display: flex;
   background-color: rgba(255,188,53,0);
   border: 1px solid  #e9e9e9;
   text-align: center;
@@ -16,18 +17,11 @@ const InputField = styled.input`
   letter-spacing: 1px;
 `;
 
-const Icon = styled.i`
-  position: absolute;
-  right: 8px;
-  color: #606060;
-  top: 12px;
-`;
 
 const Input = ({ ...props }) => (
-  <InputContainer>
+  // <InputContainer>
     <InputField {...props} />
-    <Icon className='fa fa-search' />
-  </InputContainer>
+  // </InputContainer>
 );
 
 export default Input;
