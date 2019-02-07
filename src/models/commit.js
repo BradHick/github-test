@@ -4,19 +4,28 @@ import Immutable from 'seamless-immutable';
 
 const url = '/repos';
 
-const state = new Immutable({
+const initialState = new Immutable({
   commits: [],
   errors: {},
+  hasMoreCommits: true,
+  commitPage: 1,
   loading: false
 });
 
 const commit = {
-  state,
+  state: initialState,
   reducers:{
     fetchCommitsFulfiled: (state, payload) => {
+      if (payload.length > 0){
+        return state.merge({
+          commits: state.commits.concat(payload),
+          commitPage: state.commitPage + 1,
+          loading: false
+        });
+      }
       return state.merge({
-        commits: payload.data || payload,
-        loading: false
+        loading: false,
+        hasMoreCommits: false
       });
     },
     fetchCommitsPending: (state) => {
@@ -27,6 +36,8 @@ const commit = {
     resetCommits: (state) => {
       return state.merge({
         commits: [],
+        hasMoreCommits: true,
+        commitPage: 1,
         errors: {},
         loading: false
       });
@@ -39,16 +50,18 @@ const commit = {
     }
   },
   effects: (dispatch) => ({
-    fetchCommits(params){
-      dispatch.commit.resetCommits();
-      dispatch.commit.fetchCommitsPending();
-      return client.get(`${url}/${params.username}/${params.repos}/commits`)
-        .then(res => {
-          dispatch.commit.fetchCommitsFulfiled(res.data);
-        })
-        .catch(err =>{
-          dispatch.commit.fetchCommitsRejected(err);
-        });
+    fetchCommits(params,state){
+      const { commitPage, hasMoreCommits } = state.commit;
+      if (hasMoreCommits){
+        dispatch.commit.fetchCommitsPending();
+        return client.get(`${url}/${params.username}/${params.repos}/commits?per_page=20&page=${commitPage}`)
+          .then(res => {
+            dispatch.commit.fetchCommitsFulfiled(res.data);
+          })
+          .catch(err =>{
+            dispatch.commit.fetchCommitsRejected(err);
+          });
+      }
     }
   })
 

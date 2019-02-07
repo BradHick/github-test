@@ -23,24 +23,6 @@ const filterCommits = (items, text) => {
   return items.filter( item => item.commit.message.toLowerCase().search(text.toLowerCase()) !== -1);
 }
 
-const displayFirstPage = ( state ) => {
-  let items = state.commits;
-  let paginatedCommits = state.paginatedCommits;
-  let per_page = state.per_page;
-  let hasMore = state.hasMore;
-
-
-  if (hasMore){
-    paginatedCommits = items.slice(items.length).slice(0, per_page);
-    if (paginatedCommits.length >= items.length){
-      hasMore = false;
-    }
-  }
-  
-  
-
-}
-
 class CommitList extends Component {
 
   state ={
@@ -51,20 +33,31 @@ class CommitList extends Component {
     loadingState: false
   };
 
+  infinityScroll = () => {
+    const { fetchCommits, loading, match: { params } } = this.props;
+    if(!loading){
+      window.onscroll = e => {
+        if ( window.innerHeight + window.scrollY >= document.body.offsetHeight - 25) {
+          if (params.username && params.repos) {
+            fetchCommits(params);
+          }
+        }
+      };
+    }
+  }
+
   componentDidMount = () => {
     const { fetchCommits, match: { params } } = this.props;
+    this.infinityScroll();
     if (params.username && params.repos) {
       fetchCommits(params);
     }
-
-    window.onscroll = e => {
-      if ( window.innerHeight + window.scrollY >= document.body.offsetHeight - 25) {
-        console.log('====================================');
-        console.log('paginatedSearch');
-        console.log('====================================');
-      }
-    };
   };
+
+  componentWillUnmount(){
+    const { resetCommits } = this.props;
+    resetCommits();
+  }
     
   render() {
     const { commitsList, loading, match: { params } } = this.props;
