@@ -24,7 +24,7 @@ const Icon = styled.i`
 const Footer = props => (
   <FooterWrapper>
     <Text>
-       2019 <Icon> &#9786; </Icon> maded by <a href='https://github.com/BradHick' rel='noopener noreferrer' target='_blank'>Brad Hick</a>
+       2019 <Icon> &#9786; </Icon> maded by <a style={{'color': '#fff'}} href='https://github.com/BradHick' rel='noopener noreferrer' target='_blank'>Brad Hick</a>
     </Text>
   </FooterWrapper>
 );
