@@ -16,9 +16,12 @@ import {
   Loading,
   Select,
   Button,
+  Form,
   BackPage,
   Repo
 } from '../../components';
+
+
 
 const getTimeRange = lastCommit => {
 
@@ -71,24 +74,10 @@ class Repository extends Component {
     sortedRepos: [],
   };
   
-  // scrollInfiniy = () => {
-  //   const { isRequest } = this.props;
-  //   if (!isRequest) {
-  //     window.onscroll = e => {
-  //       if (
-  //         window.innerHeight + window.scrollY >=
-  //         document.body.offsetHeight - 25
-  //       ) {
-  //         this.getRepositoryList();
-  //       }
-  //     };
-  //   }
-  // };
 
   componentDidMount() {
     const { fetchRepos, fetchUser, match: { params } } = this.props;
     getReposList(params, fetchRepos, fetchUser);
-    // this.scrollInfiniy();
   }
 
   componentWillUnmount(){
@@ -101,8 +90,12 @@ class Repository extends Component {
     return (
       <Fragment>
         <If condition={repos && repos.length}>
-          <Avatar src={user.avatar_url} />
           <Card info>
+            <div>
+              <Avatar src={user.avatar_url} />
+              <center><h2>{user.login}</h2></center>
+            </div>
+            
             <Info
               value={user ? user.following : null}
               description={'following'}
@@ -122,6 +115,7 @@ class Repository extends Component {
           </Card>
           
           <Card>
+            <h2><center>Select filter</center></h2>
             <Formik 
               initialValues={{ field:'stargazers_count', order: 'desc'}}
               onSubmit={values => {
@@ -129,8 +123,7 @@ class Repository extends Component {
               }}
 
               render={({handleSubmit, handleChange}) => (
-                <form onSubmit={handleSubmit}>
-                  <h2><center>Select filter</center></h2>
+                <Form onSubmit={handleSubmit}>
                   <Select name='field' onChange={handleChange}>
                     <option value='stargazers_count'>Stars</option>
                     <option value='watchers_count'>Watchers</option>
@@ -140,11 +133,11 @@ class Repository extends Component {
                     <option value='desc'>Desc</option>
                     <option value='asc'>Asc</option>
                   </Select>
-                  <Button type='submit'>
+                  <Button type='submit' full>
                     {'Sort'}
                   </Button>
 
-                </form>
+                </Form>
               )}
             />
             

@@ -32,8 +32,8 @@ class Home extends Component {
     const { name, avatar_url, bio, location, id, login } = user;
     return (
       <Fragment>
-        <Title>Search by username</Title>
-        <Card>
+        <Title>Github Test</Title>
+        <Card info>
           <Input
             placeholder='Username'
             onChange={e => this.setState({text: e.target.value})}

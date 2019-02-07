@@ -14,6 +14,7 @@ import {
   Title,
   Button,
   Input,
+  Form,
   Loading,
   BackPage
 } from '../../components';
@@ -67,6 +68,7 @@ class CommitList extends Component {
 
 
         <Card>
+            <h2><center>Filter commits</center></h2>
             <Formik 
               initialValues={{ text:''}}
               onSubmit={values => {
@@ -76,8 +78,7 @@ class CommitList extends Component {
               }}
 
               render={({handleSubmit, handleChange}) => (
-                <form onSubmit={handleSubmit}>
-                  <h2><center>Filter commits</center></h2>
+                <Form onSubmit={handleSubmit} flex>
                   
                   <Input
                     name='text'
@@ -89,7 +90,7 @@ class CommitList extends Component {
                     {'Filter'}
                   </Button>
 
-                </form>
+                </Form>
               )}
             />
             
