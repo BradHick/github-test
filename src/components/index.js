@@ -15,6 +15,7 @@ import BackPage from './BackPage';
 import Info from './Info';
 import Commit from './Commit';
 import Select from './Select';
+import Form from './Form';
 
 export {
   Header,
@@ -24,6 +25,7 @@ export {
   Input,
   Button,
   If,
+  Form,
   Commit,
   Loading,
   Card,
