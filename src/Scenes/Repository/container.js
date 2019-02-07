@@ -11,6 +11,7 @@ const mapStateToProps = ({ user, repo, commit }) => ({
 const mapDispatchToProps = ({ user, repo, commit }) => ({
   fetchUser: user.fetchUser,
   fetchRepos: repo.fetchRepos,
+  resetRepos: repo.resetRepos,
   fetchCommits: commit.fetchCommits
 });
 

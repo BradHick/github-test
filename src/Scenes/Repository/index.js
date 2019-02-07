@@ -91,6 +91,11 @@ class Repository extends Component {
     // this.scrollInfiniy();
   }
 
+  componentWillUnmount(){
+    const { resetRepos } = this.props;
+    resetRepos();
+  }
+
   render() {
     const { repos, user, fetchCommits, loading } = this.props;
     return (
