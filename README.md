@@ -1,5 +1,44 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
+## Libs used on this project
+
+1 - [Rematch](https://github.com/rematch/rematch)<br>
+2 - [Axios](https://github.com/axios/axios)<br>
+3 - [Date-fns](https://github.com/you-dont-need/You-Dont-Need-Momentjs)<br>
+4 - [Styled-components](https://github.com/styled-components/styled-components)<br>
+5 - [Seamless-immutable](https://github.com/rtfeldman/seamless-immutable)<br>
+6 - [Moment](https://momentjs.com/)<br>
+7 - [Formik](https://github.com/jaredpalmer/formik)<br>
+8 - [React-loader-spinner](https://github.com/mhnpd/react-loader-spinner)<br>
+9 - [React-Redux](https://github.com/reduxjs/react-redux)<br>
+
+
+## After you clone this project's repository, run:
+
+**`npm install`** <br>
+To install all dependencies;
+<br><br>
+**`npm start`** <br>
+To runs the app in the development mode.<br>
+Then, open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+<br>
+
+## The project
+
+This project connects to GitHub rest api and show all the public reposotories of the user that you provide, searching by username.<br>
+
+**FEATURES:**
+* Find user by name;
+* Show the informations of that user (ex: quantity of followers, quantity of followings, etc);
+* Show all public repositories of that user;
+* Sort the repositories by stars, watchers or last updates;
+* Show all commits of selected repository;
+* Filter the commits by provider text;
+* Infinity scroll of commits, loading 20 per time;
+
+<br><br><br>
+
 ## Available Scripts
 
 In the project directory, you can run:
