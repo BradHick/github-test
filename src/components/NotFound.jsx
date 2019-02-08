@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 const DontFountWapper = styled.div`
   width: 40%;
   height: 100px;
@@ -28,16 +27,9 @@ const Description = styled.span`
   text-align: center;
 `;
 
-const Icon = styled.i`
-  color: #fff;
-  top: 12px;
-  font-size: 50px;
-`;
-
 const NotFound = () => (
   <DontFountWapper>
     <Column>
-      <Icon className='fas fa-times-circle' />
       <Description> User Not Found</Description>
     </Column>
   </DontFountWapper>

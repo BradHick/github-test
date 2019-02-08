@@ -4,8 +4,6 @@ const mapStateToProps = ({ user, repo, commit }) => ({
   repos: repo.repos,
   user: user.user,
   loading: repo.loading,
-  // page: profile.pageRepository,
-  // isRequest: profile.isRequest
 });
 
 const mapDispatchToProps = ({ user, repo, commit }) => ({

@@ -59,21 +59,17 @@ const getReposList = (params, fetchRepos, fetchUser) => {
 
 const sortRepos = (items, field, order) => {
   let arr = [...items];
-
   if (order === 'desc'){
     return arr.sort((a,b) => (a[field] > b[field]) ? -1 : ((b[field] > a[field]) ? 1 : 0));
   }
-
   return arr.sort((a,b) => (a[[field]] > b[[field]]) ? 1 : ((b[[field]] > a[[field]]) ? -1 : 0));
-
 };
 
 class Repository extends Component {
 
   state = {
     sortedRepos: [],
-  };
-  
+  };  
 
   componentDidMount() {
     const { fetchRepos, fetchUser, match: { params } } = this.props;

@@ -1,11 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
-const InputContainer = styled.div`
-  position: relative;
-`;
-
 const InputField = styled.input`
   width: 100%;
   height: 36px;
@@ -19,9 +14,7 @@ const InputField = styled.input`
 
 
 const Input = ({ ...props }) => (
-  // <InputContainer>
     <InputField {...props} />
-  // </InputContainer>
 );
 
 export default Input;

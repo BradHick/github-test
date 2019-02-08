@@ -1,7 +1,6 @@
 import { client } from '../client/client';
 import Immutable from 'seamless-immutable';
 
-
 const url = '/users';
 
 const state = new Immutable({
