@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Libs used on this project
 
-1 - [Rematch](https://github.com/rematch/rematch)<br>
+1 - [Rematch](https://github.com/rematch/rematch?target=_blank)<br>
 2 - [Axios](https://github.com/axios/axios)<br>
 3 - [Date-fns](https://github.com/you-dont-need/You-Dont-Need-Momentjs)<br>
 4 - [Styled-components](https://github.com/styled-components/styled-components)<br>
@@ -36,6 +36,20 @@ This project connects to GitHub rest api and show all the public reposotories of
 * Show all commits of selected repository;
 * Filter the commits by provider text;
 * Infinity scroll of commits, loading 20 per time;
+<br>
+
+**OBSERVATIONS:**
+* All the functions were implemented outside the class, aiming to keep them in the cache improving the performance instead of always recreating them when the class is instantiated;
+* The `infinityScroll`function was implemented manually to avoid the unnecessary addition of external libs;
+* The Rematch framework was chosen because it has several characteristics superior to redux, such as generated action creators, async	without middlewares, simple setup and so on. See more on [Comparing Redux & Rematch
+](https://github.com/rematch/rematch/blob/master/docs/purpose.md);
+* The Formik was chosen because it presents an excellent approach to how to work with forms in React, in addition to being much lighter and scalable than its competitor ReduxForm. See more on [Formik Overview](https://jaredpalmer.com/formik/docs/overview);
+
+
+## [Live Demo](https://jzwow54k9w.codesandbox.io/)
+
+
+
 
 <br><br><br>
 
