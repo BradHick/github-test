@@ -14,7 +14,7 @@ const Username = styled.h1`
   font-size: 16px;
   line-height: 22px;
   color: #333333;
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-weight: 400;
   margin-bottom: 8px;
   margin-left: 8px;
@@ -23,7 +23,7 @@ const Username = styled.h1`
 
 const Message = styled.p`
   color: #333333;
-  font-family: Roboto;
+  font-family: 'Roboto';
   margin-left: 8px;
   font-size: 13px;
 `;
@@ -35,7 +35,7 @@ const Column = styled.div`
 `;
 
 const Date = styled.span`
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-size: 13px;
   text-align: right;
   display: block;

@@ -12,7 +12,7 @@ const SelectField = styled.select`
   background-color: rgba(255,188,53,0);
   border: 1px solid  #e9e9e9;
   text-align: center;
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   letter-spacing: 1px;
 `;
 

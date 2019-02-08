@@ -11,7 +11,7 @@ const UserContainer = styled.div`
 const Description = styled.p`
   font-size: 13px;
   color: #333333;
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   margin-left: 8px;
 `;
 
@@ -19,7 +19,7 @@ const Title = styled.h1`
   font-size: 16px;
   line-height: 22px;
   color: #333333;
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-weight: 400;
   margin-bottom: 8px;
   margin-left: 8px;

@@ -15,7 +15,7 @@ const BackPageStyled = styled(Link)`
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 600;
-  font-family: Roboto;
+  font-family: 'Roboto';
   display: flex;
   align-items: center;
   justify-content: center;

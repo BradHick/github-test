@@ -15,7 +15,7 @@ const Title = styled.h1`
   letter-spacing: 0px;
   line-height: 20px;
   color: #f2f4f8;
-  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
   font-weight: 400;
 `;
 

@@ -10,7 +10,7 @@ const InfoContainer = styled.div`
 `;
 
 const Description = styled.span`
-  font-family: Roboto;
+  font-family: 'Roboto';
   font-size: 14px;
   letter-spacing: 1px;
   margin-top: 8px;
@@ -20,7 +20,7 @@ const Description = styled.span`
 `;
 
 const Title = styled.h1`
-  font-family: Montserrat;
+  font-family: 'Montserrat';
   font-size: 50px;
   color: #313541;
 `;

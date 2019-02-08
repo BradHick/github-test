@@ -13,7 +13,7 @@ const Button = styled.button`
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 600;
-  font-family: Roboto;
+  font-family: 'Roboto';
 `;
 
 export default Button;

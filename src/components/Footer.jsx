@@ -11,7 +11,7 @@ const FooterWrapper = styled.footer`
   background-color: #313541;
   display: flex;
   align-items: center;
-  font-family: Roboto,Helvetica,Arial,sans-serif;
+  font-family: 'Roboto',Helvetica,Arial,sans-serif;
 `;
 
 const Text = styled.span`
