@@ -4,7 +4,7 @@ const Title = styled.h1`
   font-size: 36px;
   color: #333363;
   font-family: 'Lato';
-  font-weight: bolder;
+  font-weight: 400;
   margin-bottom: 48px;
   letter-spacing: 2px;
   text-align: center;
